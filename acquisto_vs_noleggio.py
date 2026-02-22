@@ -58,7 +58,7 @@ with col2:
     st.info("Include tipicamente: RCA, Kasko, Bollo, Manutenzione e Soccorso stradale.")
 
 with col3:
-    st.header("⏱️ Noleggio Breve")
+    st.header("Noleggio a breve termine")
     costo_giorno = st.number_input("Costo medio al giorno (€)", value=65)
     giorni_uso = st.number_input("Giorni di uso all'anno", value=80)
     st.caption("Ideale se non usi l'auto tutti i giorni.")
