@@ -42,7 +42,7 @@ with col1:
 
 with col2:
     st.header("Noleggio a lungo termine")
-    anticipo_nlt = st.number_input("Anticipo NLT (€)", value=5000, step=500)
+    anticipo_nlt = st.number_input("Anticipo (€)", value=5000, step=500)
     canone_nlt = st.number_input("Canone mensile (€)", value=480, step=10)
     st.info("Include tipicamente: RCA, Kasko, Bollo, Manutenzione e Soccorso stradale.")
 
@@ -78,7 +78,7 @@ st.subheader("📊 Confronto Risultati")
 data = {
     "Vento di Spesa": ["Costo Totale", "Costo Annuo", "Costo Mensile"],
     "Proprietà": [tco_proprieta, tco_proprieta/anni, tco_proprieta/(anni*12)],
-    "NLT": [tco_nlt, tco_nlt/anni, tco_nlt/(anni*12)],
+    "Lungo Termine": [tco_nlt, tco_nlt/anni, tco_nlt/(anni*12)],
     "Breve Termine": [tco_nbt, tco_nbt/anni, tco_nbt/(anni*12)]
 }
 df = pd.DataFrame(data)
