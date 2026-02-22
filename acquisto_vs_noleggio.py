@@ -15,12 +15,11 @@ Questa app ti aiuta a confrontare il **Costo Totale di Possesso (TCO)** tra:
 
 # --- SIDEBAR: PARAMETRI GENERALI ---
 st.sidebar.header("⚙️ Parametri Generali")
-anni = st.sidebar.slider("Orizzonte temporale (anni)", 1, 10, 4)
-km_anno = st.sidebar.number_input("Km percorsi all'anno", value=15000, step=1000)
+anni = st.sidebar.slider("Orizzonte temporale (anni)", 1, 20, 4)
 
 st.sidebar.markdown("---")
 st.sidebar.header("📉 Opzioni Avanzate")
-calcolo_residuo = st.sidebar.radio("Calcolo Valore Residuo", ["Automatico (Algoritmo)", "Manuale"])
+calcolo_residuo = st.sidebar.radio("Calcolo Valore Residuo", [ "Manuale"])
 
 # Costo opportunità (Facoltativo)
 usa_costo_opportunita = st.sidebar.checkbox("Includi Costo Opportunità", help="Considera il rendimento perso investendo i soldi nell'auto invece che in un prodotto finanziario (es. Conto Deposito).")
@@ -35,17 +34,7 @@ with col1:
     st.header("Proprietà")
     prezzo_auto = st.number_input("Prezzo listino auto (€)", value=35000, step=1000)
     
-    if calcolo_residuo == "Manuale":
-        valore_residuo = st.number_input("Valore residuo stimato (€)", value=15000)
-    else:
-        # Algoritmo svalutazione: -25% primo anno, poi -10% annuo + correzione KM
-        # Media 15k km/anno. Se fai più km, perdi 1.5% ogni 5k km extra.
-        base_svalutazione = [1.0, 0.75, 0.65, 0.55, 0.48, 0.40, 0.33, 0.28, 0.23, 0.18, 0.15]
-        perc_residua = base_svalutazione[min(anni, 10)]
-        km_extra = max(0, (km_anno - 15000) * anni)
-        penale_km = (km_extra / 5000) * 0.015
-        valore_residuo = prezzo_auto * (perc_residua - penale_km)
-        st.caption(f"Valore residuo stimato: **{valore_residuo:,.0f}€** ({perc_residua*100:.1f}% del listino)")
+    valore_residuo = st.number_input("Valore residuo stimato (€)", value=15000)
 
     spese_fisse = st.number_input("Assicurazione + Bollo (€/anno)", value=1200)
     manutenzione_ord = st.number_input("Manutenzione ordinaria (€/anno)", value=400)
