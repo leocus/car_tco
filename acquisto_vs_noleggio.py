@@ -76,7 +76,7 @@ st.markdown("---")
 st.subheader("📊 Confronto Risultati")
 
 data = {
-    "Vento di Spesa": ["Costo Totale", "Costo Annuo", "Costo Mensile"],
+    "Periodo": ["Costo Totale", "Costo Annuo", "Costo Mensile"],
     "Proprietà": [tco_proprieta, tco_proprieta/anni, tco_proprieta/(anni*12)],
     "Lungo Termine": [tco_nlt, tco_nlt/anni, tco_nlt/(anni*12)],
     "Breve Termine": [tco_nbt, tco_nbt/anni, tco_nbt/(anni*12)]
@@ -86,7 +86,7 @@ df = pd.DataFrame(data)
 c1, c2 = st.columns([1, 1.5])
 
 with c1:
-    st.dataframe(df.set_index("Vento di Spesa").style.format("{:,.0f} €"))
+    st.dataframe(df.set_index("Periodo").style.format("{:,.0f} €"))
     
     # Messaggio dinamico
     vincitore = df.columns[df.iloc[0, 1:].astype(float).argmin() + 1]
